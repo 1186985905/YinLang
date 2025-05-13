@@ -1,0 +1,72 @@
+server:
+  port: 5000
+
+spring:
+  application:
+    name: yinxiaolang-management
+
+  # MVC异步请求配置
+  mvc:
+    async:
+      request-timeout: 60000 # 60秒
+
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/yinlan?useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1245900261Aa
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  # 文件上传配置
+  servlet:
+    multipart:
+      max-file-size: 10MB      # 单个文件最大大小
+      max-request-size: 20MB   # 单次请求最大大小
+      enabled: true
+
+# 文件上传路径和访问配置
+file:
+  upload:
+    path: uploads            # 上传文件保存路径
+  access:
+    url: http://localhost:5000/uploads  # 访问文件的基础URL
+
+# 自定义AI模型配置
+ai-models:
+  # OpenAI配置
+  openai:
+    enabled: true
+    api-key: ${OPENAI_API_KEY:sk-6tGUjI2SLwBfpIe4fM0gCwRnccJmVEtCY5yUPOmiant6fepj}
+    base-url: ${OPENAI_BASE_URL:https://sg.uiuiapi.com/v1}
+    model: ${OPENAI_MODEL:gpt-4o-all}
+
+  # DeepSeek配置
+  deepseek:
+    enabled: true
+    api-key: ${DEEPSEEK_API_KEY:sk-79097bb730c640ce82618acf0348109f}
+    base-url: ${DEEPSEEK_BASE_URL:https://api.deepseek.com}
+    model: deepseek-chat
+
+  # 通义千问配置
+  qianwen:
+    enabled: true
+    api-key: ${QIANWEN_API_KEY:sk-6tGUjI2SLwBfpIe4fM0gCwRnccJmVEtCY5yUPOmiant6fepj}
+    base-url: ${QIANWEN_BASE_URL:https://sg.uiuiapi.com/v1}
+    model: qwen2.5-vl-72b-instruct
+
+# 日志配置
+logging:
+  level:
+    root: info
+    com.nan: debug           # 应用日志级别设为DEBUG，便于排查问题
+    org.springframework.web: debug

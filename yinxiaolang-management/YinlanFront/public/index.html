@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,viewport-fit=cover">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="manifest" href="<%= BASE_URL %>manifest.json">
+    <meta name="theme-color" content="#409EFF">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>茵小浪</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overscroll-behavior: none;
+      }
+      #app {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <strong>很抱歉，茵小浪需要启用JavaScript才能正常运行。请启用后重试。</strong>
+    </noscript>
+    <div id="app"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('./service-worker.js')
+            .then(function() {
+              console.log('ServiceWorker 注册成功');
+            })
+            .catch(function(error) {
+              console.log('ServiceWorker 注册失败: ', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
